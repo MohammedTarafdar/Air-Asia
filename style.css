@@ -120,3 +120,10 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+.welcome-container{
+    height: 100%;
+}
+#welcome-section{
+    display: none;
+}
+
