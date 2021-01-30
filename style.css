@@ -95,7 +95,7 @@ nav ul li a:hover, a.active{
     gap: 10px;
 }
 .booking-content{
-    color: #fff;
+    color: white;
     width: 80%;
 }
 .booking-content h1{
@@ -120,10 +120,27 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+
 .welcome-container{
-    height: 100%;
+    color: rgba(0, 0, 255, 0.7);
+    font-size: 30px;
+    margin-top: 300px ;
+    text-align: center;
+    margin-top: 300px ;
 }
+
+.welcome-container h1{
+    color: rgba(245, 2, 2, 0.7);
+    font-size: 70px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 400;
+    margin-bottom: 25px;
+
+}
+
 #welcome-section{
     display: none;
 }
+
 

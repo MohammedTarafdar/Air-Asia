@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Third Way</title>
+    <title>final Way</title>
     <!--For Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
@@ -110,12 +110,19 @@
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
-        </div>
-        <div id="welcome-section" class="welcome-container">
+        </div >
+        
+        
+    </main>
+
+    <section id="welcome-section">
+        <div  class="welcome-container">
             <h1>Welcome to Air Asia</h1>
-            <p>Thank You ! <br>Your ticket has been</p>
+            <p>Thank You ! <br>Your ticket has been successfully booked. <br>Please conform if within 24 hours.</p>
         </div>
+
     </section>
+    
 
     <!--Thank You-->
     
@@ -124,89 +131,56 @@
     <script>
         // Welcome to look at my code.
 
-        // for First Class
-
       
         document.getElementById('fc-ticket-increment').addEventListener("click", function(){
-            let subtotal = ticketSelector(true);
-            let tax = taxAmount(subtotal); 
-            totalAmount(subtotal, tax);   
+            
+            updateBill(1,0);
         });
 
         document.getElementById('fc-ticket-decrement').addEventListener('click', function(){
-            let subtotal = ticketSelector(false);
-            let tax = taxAmount(subtotal);  
-            totalAmount(subtotal, tax);  
+            
+            updateBill(-1, 0);
         });
 
-        function ticketSelector(isIncrease){
-            let ticketNumber = document.getElementById('fc-ticket-number');
-            let ticketCount = parseInt(ticketNumber.value);
-            let newTicketCount = ticketCount;
-            if(isIncrease == true){
-                newTicketCount = ticketCount + 1;
-            }
-            if(isIncrease == false && ticketCount > 0){
-                newTicketCount = ticketCount - 1;
-            }
-            ticketNumber.value = newTicketCount;
-            // to display subtotal
-            let subtotal = newTicketCount * 150;
-            document.getElementById('subtotal-price').innerText ='$' + subtotal;
-            return subtotal;
-        }
-
-        
-        // For Economy
-        
-
-        
+    
 
         document.getElementById('ec-ticket-increment').addEventListener("click", function(){
-            let subtotal = economyTicketSelector(true);
-            let tax = taxAmount(subtotal);
-            totalAmount(subtotal, tax);
+            
+            updateBill(0, 1);
         });
 
         document.getElementById('ec-ticket-decrement').addEventListener('click', function(){
-            let subtotal = economyTicketSelector(false);
-            let tax = taxAmount(subtotal);
-            totalAmount(subtotal, tax);
+            
+            updateBill(0, -1);
+
         });
 
 
+        function updateBill(fcChange, ecChange){
 
-        function economyTicketSelector(isIncrease){
-            let ticketNumber = document.getElementById('ec-ticket-number');
-            let ticketCount = parseInt(ticketNumber.value);
-            let newTicketCount = ticketCount;
-            if(isIncrease == true){
-                newTicketCount = ticketCount + 1;
-            }
-            if(isIncrease == false && ticketCount > 0){
-                newTicketCount = ticketCount - 1;
-            }
+            let fcTicketNumber = parseInt(document.getElementById('fc-ticket-number').value);
+            fcTicketNumber = Math.max(0, fcTicketNumber + fcChange);
+
+            let ecTicketNumber = parseInt(document.getElementById('ec-ticket-number').value);
+            ecTicketNumber = Math.max(0, ecTicketNumber + ecChange);
             
-            ticketNumber.value = newTicketCount;
-            // to display subtotal
-            let subtotal = newTicketCount * 100;
+            document.getElementById('fc-ticket-number').value = ""+fcTicketNumber;
+
+            document.getElementById('ec-ticket-number').value = ""+ecTicketNumber;
+
+
+            let subtotal = fcTicketNumber*150 + ecTicketNumber*100;
+
+            let tax = subtotal * .10;
+
+            let total = subtotal + tax;
+
             document.getElementById('subtotal-price').innerText ='$' + subtotal;
 
-            return subtotal;
-        }
+            document.getElementById('tax-amount').innerText ='$' + tax;
 
+            document.getElementById('total-price').innerText ='$' + total;
 
-        function taxAmount(subtotal){
-            let tax = Math.round (subtotal * .1);
-            document.getElementById('tax-amount').innerText = '$'+ tax;
-            return tax;
-        }
-
-        function totalAmount(subtotal, tax){
-            
-            let totalPrice = subtotal + tax;
-            document.getElementById('total-price').innerText ='$' + totalPrice;
-            
         }
 
         let bookNowButton = document.getElementById('book-now-button');
@@ -217,7 +191,6 @@
             const welcomeArea = document.getElementById('welcome-section');
             welcomeArea.style.display = 'block';
         })
-
 
 
         
